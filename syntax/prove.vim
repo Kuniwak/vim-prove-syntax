@@ -24,6 +24,8 @@ syn match proveTestOK                /\s*ok [0-9]\+ -/me=e-1 contained
 syn match proveTestNotOK             /\s*not ok [0-9]\+ -/me=e-1 contained
 syn match proveTestSkipped           /\s*ok [0-9]\+ # skip/me=e-6 contained
 
+syn match proveTestDetaDumper        /^\$VAR[0-9]\+/
+
 syn match proveTestPlanLine          /^\s*[0-9]\+\.\.[0-9]\+.*/me=s contains=proveTestPlan
 syn match proveTestPlan              /\s*[0-9]\+\.\.[0-9]\+/ contained nextgroup=proveTestComment
 
@@ -72,6 +74,7 @@ if !exists("did_proveverboseoutput_syntax_inits")
 		HiLink proveTestAssertionGot      Error
 		HiLink proveTestAssertionExpected SpecialChar
 		HiLink proveTestFilePath          Error
+		HiLink proveTestDetaDumper        Constant
     delcommand HiLink
   endif
 endif
