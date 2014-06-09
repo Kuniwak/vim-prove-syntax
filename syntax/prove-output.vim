@@ -19,20 +19,22 @@ if version < 600    " Don't support the old version
   unlet! b:prove_output_fold
 endif
 
-syn match proveOutputLine              /^\s*\(not \)\?ok\s.*/me=s contains=proveOutputOk,proveOutputNotOK,proveOutputSkipped
-syn match proveOutputOK                /\s*ok [0-9]\+ -/me=e-1 contained
-syn match proveOutputNotOK             /\s*not ok [0-9]\+ -/me=e-1 contained
-syn match proveOutputSkipped           /\s*ok [0-9]\+ # skip/me=e-6 contained
+syn match proveOutputLine                     /^\s*\(not \)\?ok\s.*/me=s contains=proveOutputOk,proveOutputNotOK,proveOutputSkipped
+syn match proveOutputOK                       /\s*ok [0-9]\+ -/me=e-1 contained
+syn match proveOutputNotOK                    /\s*not ok [0-9]\+ -/me=e-1 contained
+syn match proveOutputSkipped                  /\s*ok [0-9]\+ # skip/me=e-6 contained
 
-syn match proveOutputDetaDumper        /^\$VAR[0-9]\+/
+syn match proveOutputDetaDumper               /^\$VAR[0-9]\+/
 
-syn match proveOutputPlanLine          /^\s*[0-9]\+\.\.[0-9]\+.*/me=s contains=proveOutputPlan
-syn match proveOutputPlan              /\s*[0-9]\+\.\.[0-9]\+/ contained nextgroup=proveOutputComment
+syn match proveOutputPlanLine                 /^\s*[0-9]\+\.\.[0-9]\+.*/me=s contains=proveOutputPlan
+syn match proveOutputPlan                     /\s*[0-9]\+\.\.[0-9]\+/ contained nextgroup=proveOutputComment
 
-syn match proveOutputCommentLine       /^\s*#.*/me=s contains=proveOutputComment
-syn match proveOutputComment           /\s*#.*/ contained contains=proveOutputAssertionGot,proveOutputAssertionExpected
-syn match proveOutputAssertionGot      /got:.*/hs=s+4 contained
-syn match proveOutputAssertionExpected /expected:.*/hs=s+9 contained
+syn match proveOutputCommentLine              /^\s*#.*/me=s contains=proveOutputComment
+syn match proveOutputComment                  /\s*#.*/ contained contains=proveOutputAssertionGot,proveOutputAssertionExpected,proveOutputAssertionHashRefGot,proveOutputAssertionHashRefExpected
+syn match proveOutputAssertionGot             /got:.*/hs=s+4 contained
+syn match proveOutputAssertionExpected        /expected:.*/hs=s+9 contained
+syn match proveOutputAssertionHashRefGot      /\$got->.*/hs=s+6 contained
+syn match proveOutputAssertionHashRefExpected /\$expected->.*/hs=s+11 contained
 
 syn match proveOutputResult            /^\s*Result:/ nextgroup=proveOutputPass,proveOutputFail skipwhite
 syn keyword proveOutputPass            PASS contained
@@ -62,19 +64,21 @@ if !exists('did_proveoutput_syntax_inits')
       command -nargs=+ HiLink hi def link <args>
     endif
 
-    HiLink proveOutputOK                SpecialChar
-    HiLink proveOutputNotOK             Error
-		HiLink proveOutputSkipped           Function
-    HiLink proveOutputPlan              Comment
-    HiLink proveOutputRegion            Normal
-    HiLink proveOutputResult            Comment
-    HiLink proveOutputPass              SpecialChar
-    HiLink proveOutputFail              Error
-    HiLink proveOutputComment           Comment
-		HiLink proveOutputAssertionGot      Error
-		HiLink proveOutputAssertionExpected SpecialChar
-		HiLink proveOutputFilePath          Error
-		HiLink proveOutputDetaDumper        Constant
+    HiLink proveOutputOK                       SpecialChar
+    HiLink proveOutputNotOK                    Error
+		HiLink proveOutputSkipped                  Function
+    HiLink proveOutputPlan                     Comment
+    HiLink proveOutputRegion                   Normal
+    HiLink proveOutputResult                   Comment
+    HiLink proveOutputPass                     SpecialChar
+    HiLink proveOutputFail                     Error
+    HiLink proveOutputComment                  Comment
+		HiLink proveOutputAssertionGot             Error
+		HiLink proveOutputAssertionExpected        SpecialChar
+		HiLink proveOutputAssertionHashRefGot      Error
+		HiLink proveOutputAssertionHashRefExpected SpecialChar
+		HiLink proveOutputFilePath                 Error
+		HiLink proveOutputDetaDumper               Constant
     delcommand HiLink
   endif
 endif
