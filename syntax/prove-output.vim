@@ -38,7 +38,7 @@ syn match proveOutputResult            /^\s*Result:/ nextgroup=proveOutputPass,p
 syn keyword proveOutputPass            PASS contained
 syn keyword proveOutputFail            FAIL FAILED contained
 
-syn match proveOutputFilePath          /at \/\S* line [0-9]\+/ms=s+3
+syn match proveOutputFilePath          /at \S* line [0-9]\+/ms=s+3
 
 syn region proveOutputRegion     start=/^\(not \)\?ok/ end=/^\(\(not \)\?ok\|All tests successful\.\|Dubious, test returned [0-9]\+\|Bailout called\.\)/me=s-1 fold transparent excludenl
 
