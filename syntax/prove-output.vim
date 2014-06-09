@@ -36,13 +36,12 @@ syn match proveOutputAssertionExpected        /expected:.*/hs=s+9 contained
 syn match proveOutputAssertionHashRefGot      /\$got->.*/hs=s+6 contained
 syn match proveOutputAssertionHashRefExpected /\$expected->.*/hs=s+11 contained
 
-syn match proveOutputResult            /^\s*Result:/ nextgroup=proveOutputPass,proveOutputFail skipwhite
-syn keyword proveOutputPass            PASS contained
-syn keyword proveOutputFail            FAIL FAILED contained
+syn match proveOutputResult                   /^\s*Result:/ nextgroup=proveOutputPass,proveOutputFail skipwhite
+syn keyword proveOutputPass                   PASS contained
+syn keyword proveOutputFail                   FAIL FAILED contained
 
-syn match proveOutputFilePath          /at \S* line [0-9]\+/ms=s+3
-
-syn region proveOutputRegion     start=/^\(not \)\?ok/ end=/^\(\(not \)\?ok\|All tests successful\.\|Dubious, test returned [0-9]\+\|Bailout called\.\)/me=s-1 fold transparent excludenl
+syn match proveOutputFilePath                 /at \S* line [0-9]\+/ms=s+3
+syn region proveOutputRegion                  start=/^\(not \)\?ok.*$/me=e+1 end=/^\(\(not \)\?ok\|All tests successful\.\|Dubious, test returned [0-9]\+\|Bailout called\.\)/me=s-1 fold transparent excludenl
 
 set foldminlines=5
 set foldcolumn=2
