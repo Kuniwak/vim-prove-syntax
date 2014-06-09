@@ -15,3 +15,9 @@ Screenshot
 ----------
 
 ![Screenshot](https://raw.github.com/wiki/Kuniwak/vim-prove-syntax/images/screenshot.png)
+
+
+Acknowledgment
+--------------
+
+* [tapVerboseOutput](https://gist.github.com/mlafeldt/932614) - [mlafeldt](https://github.com/mlafeldt)
