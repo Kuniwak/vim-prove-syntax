@@ -33,8 +33,8 @@ syn match proveOutputCommentLine              /^\s*#.*/me=s contains=proveOutput
 syn match proveOutputComment                  /\s*#.*/ contained contains=proveOutputAssertionGot,proveOutputAssertionExpected,proveOutputAssertionHashRefGot,proveOutputAssertionHashRefExpected
 syn match proveOutputAssertionGot             /got:.*/hs=s+4 contained
 syn match proveOutputAssertionExpected        /expected:.*/hs=s+9 contained
-syn match proveOutputAssertionHashRefGot      /\$got->.*/hs=s+6 contained
-syn match proveOutputAssertionHashRefExpected /\$expected->.*/hs=s+11 contained
+syn match proveOutputAssertionHashRefGot      /\$got\(->\| =\).*/hs=s+6 contained
+syn match proveOutputAssertionHashRefExpected /\$expected\(->\| =\).*/hs=s+11 contained
 
 syn match proveOutputResult                   /^\s*Result:/ nextgroup=proveOutputPass,proveOutputFail skipwhite
 syn keyword proveOutputPass                   PASS contained
